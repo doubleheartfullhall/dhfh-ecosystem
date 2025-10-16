@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Nunito_Sans, Noto_Sans_SC } from "next/font/google";
+import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
-
-import AppProvider from "@/components/auth/AppProvider";
-
 import "./globals.css";
 
-const displayFont = DM_Serif_Display({ subsets: ["latin"], display: "swap", variable: "--font-display" });
-const sansFont = Nunito_Sans({ subsets: ["latin"], display: "swap", variable: "--font-sans" });
-const hanFont = Noto_Sans_SC({ subsets: ["latin"], display: "swap", variable: "--font-han" });
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "DHFH Ecosystem",
@@ -22,10 +17,8 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${sansFont.variable} ${hanFont.variable}`}>
-      <body className={`${sansFont.className} font-sans antialiased bg-porcelain text-dhfh-ink`}>
-        <AppProvider>{children}</AppProvider>
-      </body>
+    <html lang="en">
+      <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }

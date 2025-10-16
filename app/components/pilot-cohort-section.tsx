@@ -8,27 +8,27 @@ type PilotCohortSectionProps = {
 
 export function PilotCohortSection({ stats }: PilotCohortSectionProps) {
   return (
-    <section className="rounded-2xl bg-white/80 p-10 shadow-soft ring-1 ring-dhfh-ink/5 sm:p-12">
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-start">
-        <div className="space-y-5">
-          <h2 className="font-display text-3xl text-dhfh-ink sm:text-4xl">Join the pilot cohort</h2>
-          <p className="text-base leading-7 text-dhfh-ink/80 sm:text-lg">
+    <section className="border-t border-white/10 bg-slate-950 text-slate-100">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 px-6 py-20 sm:px-12 lg:flex-row lg:items-stretch">
+        <div className="w-full space-y-4 rounded-3xl border border-slate-700 bg-slate-900/60 p-8 text-center lg:w-5/12 lg:text-left">
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">Join the pilot cohort</h2>
+          <p className="text-base text-slate-200">
             We are co-designing the next wave of DHFH modules with educators, librarians, and caregivers. Share your context to
             receive sample chapters, activity run-throughs, and facilitator coaching.
           </p>
           <Link
             href="https://forms.gle/97ahb7YyDemo"
-            className="inline-flex items-center justify-center rounded-full bg-dhfh-red px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-dhfh-ink"
+            className="inline-flex items-center justify-center rounded-full bg-purple-400 px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-purple-300"
           >
             Request pilot access
           </Link>
         </div>
-        <dl className="grid gap-6 rounded-2xl bg-dhfh-porcelain/80 p-8 ring-1 ring-dhfh-gold/30 sm:grid-cols-2">
+        <dl className="grid w-full gap-6 rounded-3xl border border-slate-700 bg-slate-900/40 p-8 sm:grid-cols-2 lg:w-7/12">
           {stats.map((stat) => (
             <div key={stat.label} className="space-y-1">
-              <dt className="text-xs font-semibold uppercase tracking-[0.3em] text-dhfh-gold/90">{stat.label}</dt>
-              <dd className="font-display text-3xl text-dhfh-ink sm:text-4xl">{stat.value}</dd>
-              <p className="text-sm leading-6 text-dhfh-ink/70">{stat.description}</p>
+              <dt className="text-sm uppercase tracking-[0.3em] text-purple-200">{stat.label}</dt>
+              <dd className="text-3xl font-semibold text-white">{stat.value}</dd>
+              <p className="text-sm text-slate-200">{stat.description}</p>
             </div>
           ))}
         </dl>
