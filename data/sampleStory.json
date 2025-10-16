@@ -1,0 +1,37 @@
+{
+  "id": "story.kitchen.001",
+  "title": {
+    "en": "Mia Makes Dumplings",
+    "zh": "米娅包饺子"
+  },
+  "world": "kitchen",
+  "pages": [
+    {
+      "image": "",
+      "segments": [
+        {
+          "zh": "早安，米娅。",
+          "pinyin": "zǎo ān, mǐ yà.",
+          "en": "Good morning, Mia."
+        },
+        {
+          "zh": "今天我们一起包饺子。",
+          "pinyin": "jīn tiān wǒ men yì qǐ bāo jiǎo zi.",
+          "en": "Today we’ll make dumplings together."
+        }
+      ]
+    }
+  ],
+  "vocab": [
+    {
+      "hanzi": "饺子",
+      "pinyin": "jiǎo zi",
+      "en": "dumpling"
+    },
+    {
+      "hanzi": "面粉",
+      "pinyin": "miàn fěn",
+      "en": "flour"
+    }
+  ]
+}
