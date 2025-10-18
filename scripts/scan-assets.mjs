@@ -20,8 +20,11 @@ async function ls(rel="") {
   }
 }
 
+const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: "base" });
+const byName = (a, b) => collator.compare(a, b);
+const hasCoverHero = value => /(?:^|[^a-z])(cover|hero)(?:[^a-z]|$)/i.test(value);
 const sortCoverHero = (a, b) =>
-  (+/cover|hero/i.test(b)) - (+/cover|hero/i.test(a)) || a.localeCompare(b);
+  (+hasCoverHero(b)) - (+hasCoverHero(a)) || byName(a, b);
 
 const data = { root: [], icons: [], characters: [], worlds: [], stories: {} };
 
@@ -32,19 +35,23 @@ if (!(await exists(PUB))) {
   console.log("❌ public/dhfh does not exist. Creating empty manifest.");
 } else {
   for (const e of await ls("")) if (!e.dir && isImg(e.name)) data.root.push(e.name);
+  data.root.sort(byName);
 
   for (const bucket of ["icons","characters","worlds"]) {
     for (const e of await ls(bucket)) if (!e.dir && isImg(e.name)) data[bucket].push(e.name);
     data[bucket].sort(sortCoverHero);
   }
 
-  for (const e of await ls("stories")) {
-    if (!e.dir) continue;
-    const slug = e.name;
+  const storySlugs = (await ls("stories"))
+    .filter(e => e.dir)
+    .map(e => e.name)
+    .sort(byName);
+
+  for (const slug of storySlugs) {
     const files = (await ls(path.join("stories", slug)))
       .filter(x => !x.dir && isImg(x.name))
       .map(x => x.name)
-      .sort((a,b) => (+/^cover\./i.test(b)) - (+/^cover\./i.test(a)) || a.localeCompare(b));
+      .sort((a,b) => (+/^cover\./i.test(b)) - (+/^cover\./i.test(a)) || byName(a, b));
     data.stories[slug] = files;
   }
 }

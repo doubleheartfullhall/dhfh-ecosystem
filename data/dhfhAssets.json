@@ -1,9 +1,9 @@
 {
   "root": [
-    "DHFHLOGO-WhiteFull.png",
-    "DHFHLOGO-WhiteS.png",
     "DHFHLogo-RedFull.png",
-    "DHFHLogo-RedS.png"
+    "DHFHLogo-RedS.png",
+    "DHFHLOGO-WhiteFull.png",
+    "DHFHLOGO-WhiteS.png"
   ],
   "icons": [
     "Cloud.PNG",
