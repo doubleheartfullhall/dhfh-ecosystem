@@ -1,6 +1,13 @@
 import { readdir, writeFile, mkdir, stat } from "node:fs/promises";
 import path from "node:path";
 
+const args = new Set(process.argv.slice(2));
+const debug = args.has("--debug") || args.has("-d") || process.env.DEBUG_SCAN_ASSETS === "1";
+
+const debugLog = (...values) => {
+  if (debug) console.log(...values);
+};
+
 const PUB = path.join(process.cwd(), "public", "dhfh");
 const isImg = n => /\.(png|jpe?g|webp|svg|gif|avif)$/i.test(n);
 
@@ -12,10 +19,10 @@ async function ls(rel="") {
   const dir = path.join(PUB, rel);
   try {
     const ents = await readdir(dir, { withFileTypes: true });
-    console.log(`📂 ls ${path.relative(process.cwd(), dir)} -> ${ents.length} entries`);
+    debugLog(`📂 ls ${path.relative(process.cwd(), dir)} -> ${ents.length} entries`);
     return ents.map(e => ({ name: e.name, dir: e.isDirectory() }));
   } catch (e) {
-    console.log(`⚠️  cannot read ${path.relative(process.cwd(), dir)} (${e.code || e.message})`);
+    console.warn(`⚠️  cannot read ${path.relative(process.cwd(), dir)} (${e.code || e.message})`);
     return [];
   }
 }
@@ -25,11 +32,14 @@ const byName = (a, b) => collator.compare(a, b);
 const hasCoverHero = value => /(?:^|[^a-z])(cover|hero)(?:[^a-z]|$)/i.test(value);
 const sortCoverHero = (a, b) =>
   (+hasCoverHero(b)) - (+hasCoverHero(a)) || byName(a, b);
+const isCoverFile = value => /^cover\./i.test(value);
+const sortStoryAssets = (a, b) =>
+  (+isCoverFile(b)) - (+isCoverFile(a)) || sortCoverHero(a, b);
 
 const data = { root: [], icons: [], characters: [], worlds: [], stories: {} };
 
-console.log("cwd =", process.cwd());
-console.log("PUB =", PUB);
+debugLog("cwd =", process.cwd());
+debugLog("PUB =", PUB);
 
 if (!(await exists(PUB))) {
   console.log("❌ public/dhfh does not exist. Creating empty manifest.");
@@ -51,7 +61,7 @@ if (!(await exists(PUB))) {
     const files = (await ls(path.join("stories", slug)))
       .filter(x => !x.dir && isImg(x.name))
       .map(x => x.name)
-      .sort((a,b) => (+/^cover\./i.test(b)) - (+/^cover\./i.test(a)) || byName(a, b));
+      .sort(sortStoryAssets);
     data.stories[slug] = files;
   }
 }
