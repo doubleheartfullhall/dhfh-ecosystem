@@ -1,0 +1,54 @@
+{
+  "root": [
+    "DHFHLOGO-WhiteFull.png",
+    "DHFHLOGO-WhiteS.png",
+    "DHFHLogo-RedFull.png",
+    "DHFHLogo-RedS.png"
+  ],
+  "icons": [
+    "Cloud.PNG",
+    "Dragon.PNG",
+    "Fan.PNG",
+    "Lantern.PNG",
+    "Lily.PNG",
+    "Lotus.PNG",
+    "Mooncake.PNG",
+    "Peony.PNG",
+    "Phoenix.PNG"
+  ],
+  "characters": [
+    "BaoBao-LookLeftUP.png",
+    "BaoBao.png",
+    "Mia-Front.png",
+    "Mia-Surprised.png",
+    "MiaBaoBao-Sitting.png",
+    "MiaBaoBao-Standing.png"
+  ],
+  "worlds": [
+    "DHFH-LuckyCat.JPG",
+    "Hug.jpg",
+    "Mia-Family.jpg",
+    "MiaBaoBao-Sitting.jpg",
+    "MiaBaoBao-Standing.jpg",
+    "MiaBaoBao-Standing.png",
+    "Snack.jpg"
+  ],
+  "stories": {
+    "bedtime-story": [
+      "MiaBaoBaoReading.PNG",
+      "MiaBaoBaoSleep.PNG"
+    ],
+    "dumpling": [
+      "MiaBaoBaoDance.PNG",
+      "MiaBaoBaoNoodle.PNG"
+    ],
+    "goldfish-snack": [],
+    "ice-cream": [],
+    "panda": [
+      "MiaBaoBaoPandaHug.png",
+      "MiaBaoBaoPandaSleep.png"
+    ],
+    "potato": [],
+    "twinkle-star": []
+  }
+}
